@@ -1,0 +1,48 @@
+<main>
+    <div class="mainContain">
+        <h2>Blogs</h2>
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary">
+              Latest Posts
+            </button>
+            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropright</span>
+            </button>
+            <ul class="dropdown-menu">
+              <!-- Dropdown menu links -->
+            </ul>
+          </div>
+
+   
+    <div class="blogcont">
+           
+            <% data.forEach(post => { %>
+                <div class="containInfo">
+                    <div class="card" >
+                        <a href="/post/<%= post._id %> " class="index-cont">
+                            
+                        <% const randomImageNumber = Math.floor(Math.random() * 3) + 1; %>
+                        <img src="./img/img<%= randomImageNumber %>.jpg" class="card-img-top" alt="Blog-Image">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= post.title  %></h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p><%= post.timePost  %></p>
+                        </div>
+                    </a>
+                      </div>
+                </div>
+            <% }) %>
+          
+       </div>
+       <nav aria-label="Page navigation example" class="mt-1">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="?page=<%= page - 1 %>" aria-disabled="<%= page === 1 ? 'true' : 'false' %>">Previous</a></li>
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <li class="page-item <%= page === i ? 'active' : '' %>"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+            <% } %>
+            <li class="page-item"><a class="page-link" href="?page=<%= page + 1 %>" aria-disabled="<%= page === totalPages ? 'true' : 'false' %>">Next</a></li>
+        </ul>
+    </nav>
+</div>
+
+</main>

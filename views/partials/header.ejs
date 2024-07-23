@@ -1,0 +1,39 @@
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">KopBlogss</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">Log In</a>
+              </li>
+            </ul>
+            <!-- SearchBar -->
+            <form action="/search" class="d-flex SearchForm" method="POST" role="search">
+              <input 
+              class="form-control me-2" 
+              type="search" 
+              placeholder="Search Blogs....."
+              name="searchTerm" 
+              id="searchInput"
+              aria-label="Search"
+              >
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <!-- SearchBar ends -->
+          </div>
+        </div>
+      </nav>
+</header>

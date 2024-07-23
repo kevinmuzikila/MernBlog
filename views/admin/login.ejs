@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Account Access</h1>
+       
+        <form action="/admin" method="POST" class="LogForm" id="loginForm">
+            <h3>Admin Login</h3>
+            <label for="username">Username</label>
+            <input type="text" placeholder="Enter Username" name="username">
+
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter Password" name="password">
+
+            <button type="submit" class="btn btn-dark">Log In</button>
+        </form>
+
+        <form action="/register" method="POST" class="LogForm" id="registerForm">
+            <h3>Admin Register</h3>
+
+            <label for="firstname">First Name</label>
+            <input type="text" placeholder="Enter First Name" name="firstname">
+
+            <label for="surname">Last Name</label>
+            <input type="text" placeholder="Enter Last Name" name="surname">
+
+            <label for="username">Username</label>
+            <input type="text" placeholder="Enter Username" name="username">
+
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter Password" name="password">
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" placeholder="Confirm Password" name="confirm_password">
+
+            <button type="submit" class="btn btn-dark">Register</button>
+        </form>
+        <div class="button-group">
+            <button id="loginBtn" class="btnReg ">Login</button>
+            <button id="registerBtn" class="btnReg ">Register</button>
+            
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>

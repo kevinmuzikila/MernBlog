@@ -1,0 +1,25 @@
+<div class="dash-cont">
+<div class="dash-top">
+    <h2> Dashboard </h2>
+    <a href="CreatePost" class="btn" > Add New </a>
+</div>
+<div class="dash-bottom">
+    <h6>All Posts </h6>
+    <% data.forEach(Post => { %>
+        <a href="/post/<%= Post._id %>" class="dash-warp">
+     <div class="dash-disp">       
+        <h5><%= Post.title  %></h5>
+        <div class="btn-cont">
+            <a href="/edit-post/<%= Post._id %>" class="btn btn-dark ms-1">Edit Post</a>
+            <form action="/delete-post/<%= Post._id %>?_method=DELETE" method="POST">
+                <input type="submit" value="Delete" class="btn btn-danger" >
+            </form>
+        </div>
+  
+     </div>
+    </a>
+    <% }) %>
+</div>
+           
+          
+</div>

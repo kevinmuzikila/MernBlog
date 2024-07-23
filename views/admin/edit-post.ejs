@@ -1,0 +1,26 @@
+<div class="create-cont">
+   
+    <div class="create-top"> 
+        <a href="/dashboard">Back</a>
+        <h4>Edit Post </h4>
+        <form action="/delete-post/<%= data._id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" class="btn btn-danger" >
+        </form>
+    </div>
+    <div class="create-form-container">
+        <div class="create-form">
+        
+            <form action="/edit-post/<%= data._id %>?_method=PUT" method="POST" class="Log-Form mt-2">
+                
+                <label for="body">Title</label>
+                <input type="text" placeholder="Blog Title" name="title" value="<%= data.title %>">
+
+    
+                <label for="body">Body</label>
+               <textarea name="body" id="" cols="50" rows="10"><%= data.body %></textarea>
+    
+                <button type="submit" value="Upadte" class="btn btn-dark"> Edit Post </button>
+            </form>
+        </div>
+    </div>
+</div>
