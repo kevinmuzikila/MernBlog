@@ -1,48 +1,85 @@
+<% 
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  }
+%>
+
 <main>
-    <div class="mainContain">
-        <h2>Blogs</h2>
-        <div class="btn-group dropend">
-            <button type="button" class="btn btn-secondary">
-              Latest Posts
-            </button>
-            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="visually-hidden">Toggle Dropright</span>
-            </button>
-            <ul class="dropdown-menu">
-              <!-- Dropdown menu links -->
-            </ul>
-          </div>
-
-   
-    <div class="blogcont">
-           
-            <% data.forEach(post => { %>
-                <div class="containInfo">
-                    <div class="card" >
-                        <a href="/post/<%= post._id %> " class="index-cont">
-                            
-                        <% const randomImageNumber = Math.floor(Math.random() * 3) + 1; %>
-                        <img src="./img/img<%= randomImageNumber %>.jpg" class="card-img-top" alt="Blog-Image">
-                        <div class="card-body">
-                          <h5 class="card-title"><%= post.title  %></h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <p><%= post.timePost  %></p>
-                        </div>
-                    </a>
-                      </div>
-                </div>
-            <% }) %>
-          
-       </div>
-       <nav aria-label="Page navigation example" class="mt-1">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="?page=<%= page - 1 %>" aria-disabled="<%= page === 1 ? 'true' : 'false' %>">Previous</a></li>
-            <% for (let i = 1; i <= totalPages; i++) { %>
-                <li class="page-item <%= page === i ? 'active' : '' %>"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
-            <% } %>
-            <li class="page-item"><a class="page-link" href="?page=<%= page + 1 %>" aria-disabled="<%= page === totalPages ? 'true' : 'false' %>">Next</a></li>
+  <div class="mainContain">
+    <div class="index-hero text-center">
+      <div class="container py-5">
+        <h1 class="display-4 fw-bold">Welcome to KopBloggs</h1>
+        <p class="lead">Stay ahead with the latest trends, tips, and insights in the world of technology.</p>
+        <a href="#latest" class="btn btn-primary btn-lg mt-3">Explore Latest Posts</a>
+      </div>
+    </div>
+    
+    <div class="index-top mt-4">
+      <form action="/search" class="d-flex SearchForm" method="POST" role="search">
+        <input 
+          class="form-control me-2" 
+          type="search" 
+          placeholder="Search Blogs....."
+          name="searchTerm" 
+          id="searchInput"
+          aria-label="Search"
+        >
+      </form>
+      <div class="btn-group dropend mt-2 mb-2">
+        <button type="button" class="btn btn-secondary">
+          Latest Posts
+        </button>
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="visually-hidden">Toggle Dropright</span>
+        </button>
+        <ul class="dropdown-menu">
+          <!-- Dropdown menu links -->
+          <li class="drop-items">
+            <a href="/?sort=latest">Latest - Oldest</a>
+          </li>
+          <li class="drop-items">
+            <a href="/?sort=oldest">Oldest - Latest</a>
+          </li>
         </ul>
-    </nav>
-</div>
+      </div>
+    </div>
+    
 
+    <div class="blogcont">
+      <% data.forEach(post => { %>
+        <div class="containInfo" id="latest" >
+          <div class="card">
+            <a href="/post/<%= post._id %>" class="index-cont">
+              <% const randomImageNumber = Math.floor(Math.random() * 3) + 1; %>
+              <img src="./img/img<%= randomImageNumber %>.jpg" class="card-img-top" alt="Blog-Image">
+              <div class="card-body">
+                <h5 class="card-title"><%= post.title %></h5>
+                <div class="card-text"><%- post.body %></div>
+                <p class="mt-1"><%= formatDate(post.timePost) %></p> <!-- Format the date here -->
+              </div>
+            </a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <nav aria-label="Page navigation example" class="mt-1">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="?page=<%= page - 1 %>" aria-disabled="<%= page === 1 ? 'true' : 'false' %>">Previous</a></li>
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <li class="page-item <%= page === i ? 'active' : '' %>"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+        <% } %>
+        <li class="page-item"><a class="page-link" href="?page=<%= page + 1 %>" aria-disabled="<%= page === totalPages ? 'true' : 'false' %>">Next</a></li>
+      </ul>
+    </nav>
+  </div>
 </main>

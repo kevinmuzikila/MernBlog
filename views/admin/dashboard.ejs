@@ -1,7 +1,14 @@
 <div class="dash-cont">
 <div class="dash-top">
     <h2> Dashboard </h2>
-    <a href="CreatePost" class="btn" > Add New </a>
+    <% if (message) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="autoDismissAlert">
+          <%= message.text %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% } %>
+    <a href="CreatePost" class="btn" > Add New <i class="bi bi-plus-square"></i></a>
+    
 </div>
 <div class="dash-bottom">
     <h6>All Posts </h6>

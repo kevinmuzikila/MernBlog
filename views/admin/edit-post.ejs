@@ -1,11 +1,9 @@
 <div class="create-cont">
    
     <div class="create-top"> 
-        <a href="/dashboard">Back</a>
+        <a href="/dashboard" class="btn btn-back"><i class="bi bi-back"></i> Back</a>
         <h4>Edit Post </h4>
-        <form action="/delete-post/<%= data._id %>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete" class="btn btn-danger" >
-        </form>
+       
     </div>
     <div class="create-form-container">
         <div class="create-form">
@@ -14,13 +12,44 @@
                 
                 <label for="body">Title</label>
                 <input type="text" placeholder="Blog Title" name="title" value="<%= data.title %>">
-
-    
+                
+               <input type="hidden" name="body" id="editorContent" ></input>
+                
+               <div class="mb-3">
                 <label for="body">Body</label>
-               <textarea name="body" id="" cols="50" rows="10"><%= data.body %></textarea>
-    
+                <div id="div_editor1">
+            
+               </div>
+
+            </div>
+            
                 <button type="submit" value="Upadte" class="btn btn-dark"> Edit Post </button>
+                <form action="/delete-post/<%= data._id %>?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete Post" class="btn btn-danger" >
+                </form>
             </form>
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+<script type="text/javascript" src="/richtexteditor/rte.js"></script>
+<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+
+<!-- Editor container -->
+
+
+<!-- Initialize the editor -->
+<script>
+   var editor1cfg = {}
+   editor1cfg.toolbar = "basic";
+   var editor1 = new RichTextEditor("#div_editor1", editor1cfg);
+   editor1.setHTML(`<%- data.body %>`)
+</script>
+
+<script>
+    // On form submit, populate the hidden input with the editor content
+    document.querySelector(".Log-Form").addEventListener("submit", function (e) {
+        document.getElementById("editorContent").value = editor1.getHTML();
+    });
+ </script>

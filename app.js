@@ -4,6 +4,7 @@ const expressLayout = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const connectDB = require('./server/config/db');
 const express = require('express');
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
+
 
 app.use(session({
     secret: 'keyboard cat',

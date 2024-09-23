@@ -1,10 +1,12 @@
 <div class="create-cont">
    
     <div class="create-top"> 
-        <a href="/dashboard">Back</a>
-        <h4>Create New Posts </h4>
+        <a href="/dashboard" class="btn btn-back"><i class="bi bi-back"></i> Back</a>
+        <h4>Create New Post </h4>
+       
     </div>
     <div class="create-form-container">
+        
         <div class="create-form">
         
             <form action="/CreatePost" method="POST" class="Log-Form mt-2">
@@ -12,12 +14,54 @@
                 <label for="body">Title</label>
                 <input type="text" placeholder="Blog Title" name="title">
 
-    
-                <label for="body">Body</label>
-               <textarea name="body" id="" cols="50" rows="10"></textarea>
+
+
+                <div class="mb-3">
+                    <label for="body">Body</label>
+                    <div id="div_editor1">
+                 
+                   </div>
+  
+                </div>
+               
+                <input type="hidden" id="editorContent" name="body" />
     
                 <button type="submit" value="Add" class="btn btn-dark"> Create </button>
             </form>
         </div>
     </div>
 </div>
+
+<!--Include the JS & CSS-->
+<link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+<script type="text/javascript" src="/richtexteditor/rte.js"></script>
+<script type="text/javascript" src='/richtexteditor/plugins/all_plugins.js'></script>
+
+<!-- Editor container -->
+
+
+<!-- Initialize the editor -->
+<script>
+   var editor1cfg = {}
+   editor1cfg.toolbar = "basic";
+   var editor1 = new RichTextEditor("#div_editor1", editor1cfg);
+</script>
+
+<script>
+    // On form submit, populate the hidden input with the editor content
+    document.querySelector("form").addEventListener("submit", function (e) {
+       document.getElementById("editorContent").value = editor1.getHTML();
+    });
+ </script>
+
+<script>
+    // Set the timeout to automatically dismiss the alert after 5 seconds (5000 milliseconds)
+    setTimeout(function() {
+      let alert = document.getElementById('autoDismissAlert');
+      if (alert) {
+        let bootstrapAlert = new bootstrap.Alert(alert);
+        bootstrapAlert.close(); // Dismiss the alert
+      }
+    }, 5000); // Adjust time as needed (5000 ms = 5 seconds)
+  </script>
+  

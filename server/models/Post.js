@@ -16,6 +16,10 @@ const Schema = mongoose.Schema;
             type: String,
             required: true
             },
+            image: {
+                type: String,
+                required: false
+                },
             timePost: {
                 type: Date,
                 default: Date.now

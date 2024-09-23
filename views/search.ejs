@@ -1,17 +1,52 @@
+<% 
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  }
+%>
+
+
 <div class="display-search">
-<h2>Search Results </h2>
+  <h2>Search Results</h2>
+  <% if (message) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" id="autoDismissAlert">
+      <%= message.text %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+  
 </div>
 <section class="blogcont">
-    <div class="containInfo">
-        <div class="card" >
-            <a href="/post/<%= data._id %>">
-              
-            <div class="card-body">
-              <h5 class="card-title"><%= data.title  %></h5>
-              <p class="card-text"></p>
-              <p><%= data.timePost  %></p>
-            </div>
-        </a>
+  <% data.forEach(post => { %>
+      <div class="card-search">
+          <div class="card">
+              <a href="/post/<%= post._id %>">
+                  <div class="card-body">
+                      <h5 class="card-title"><%= post.title %></h5>
+                      <p class="card-text"><%- post.body %></p>
+                      <p><%= formatDate(post.timePost) %></p> <!-- Optionally format the date -->
+                  </div>
+              </a>
           </div>
-    </div>
+      </div>
+  <% }) %>
 </section>
+
+<script>
+  // Set the timeout to automatically dismiss the alert after 5 seconds (5000 milliseconds)
+  setTimeout(function() {
+    let alert = document.getElementById('autoDismissAlert');
+    if (alert) {
+      let bootstrapAlert = new bootstrap.Alert(alert);
+      bootstrapAlert.close(); // Dismiss the alert
+    }
+  }, 5000); // Adjust time as needed (5000 ms = 5 seconds)
+</script>

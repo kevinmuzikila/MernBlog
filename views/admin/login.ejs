@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+   
     <div class="form-container">
         <h1>Account Access</h1>
-       
+        
+        <% if (message) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="autoDismissAlert">
+              <%= message.text %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <% } %>
+
         <form action="/admin" method="POST" class="LogForm" id="loginForm">
             <h3>Admin Login</h3>
             <label for="username">Username</label>
@@ -51,3 +59,15 @@
     <script src="./js/script.js"></script>
 </body>
 </html>
+
+<script>
+    // Set the timeout to automatically dismiss the alert after 5 seconds (5000 milliseconds)
+    setTimeout(function() {
+      let alert = document.getElementById('autoDismissAlert');
+      if (alert) {
+        let bootstrapAlert = new bootstrap.Alert(alert);
+        bootstrapAlert.close(); // Dismiss the alert
+      }
+    }, 5000); // Adjust time as needed (5000 ms = 5 seconds)
+  </script>
+  
